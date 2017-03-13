@@ -3,8 +3,17 @@
 #include <stddef.h>
 #include <vector>
 
-
 using namespace std;
+
+template <class T>
+ostream& operator<<(ostream& o, const vector<T>& v) {
+    o << "[";
+    for(auto& x : v) {
+        o << x << ", ";
+    }
+    return o << "]";
+}
+
 
 int SearchElement(vector<int>& array, const int key) {
     int i = 0;
