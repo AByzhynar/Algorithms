@@ -16,7 +16,7 @@ ostream& operator<<(ostream& o, const vector<T>& v) {
 
 
 int SearchElement(vector<int>& array, const int key) {
-    int i = 0;
+    size_t i = 0;
     array.push_back(key);
     while(array[i] != key) {
         ++i;
