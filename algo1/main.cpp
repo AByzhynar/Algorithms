@@ -47,9 +47,9 @@ template <class TFunc, class TResult, class TParam1>
 void test(TResult expected ,TFunc f, TParam1 p1) {
     auto got = f(p1);
     if (got != expected) {
-        cerr << "failed: f(" << p1 << ")" << endl;
-        cerr << "Expected: " << expected << endl;
-        cerr << "Actual: " << got << endl;
+        cerr << "FAILED!!! f(" << p1 << ")" << endl;
+        cerr << "Expected value index: " << expected << endl;
+        cerr << "Actual value index: " << got << endl;
     }
 
 }
