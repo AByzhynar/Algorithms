@@ -30,10 +30,10 @@ int SearchElement(vector<int>& array, const int key) {
 
 
 template <class TFunc, class TResult, class TParam1, class TParam2>
-void test(TResult expected ,TFunc f, TParam1 parameters, TParam2 value) {
-    auto got = f(parameters);
+void test(TResult expected ,TFunc f, TParam1 p1, TParam2 p2) {
+    auto got = f(p1, p2);
     if (got != expected) {
-        cerr << "failed" << endl;
+        cerr << "failed: f(" << p1 << ", " << p2 << ")" << endl;
         cerr << "Expected: " << expected << endl;
         cerr << "Actual: " << got << endl;
     }
@@ -42,10 +42,10 @@ void test(TResult expected ,TFunc f, TParam1 parameters, TParam2 value) {
 
 
 template <class TFunc, class TResult, class TParam1>
-void test(TResult expected ,TFunc f, TParam1 parameters) {
-    auto got = f(parameters);
+void test(TResult expected ,TFunc f, TParam1 p1) {
+    auto got = f(p1);
     if (got != expected) {
-        cerr << "failed" << endl;
+        cerr << "failed: f(" << p1 << ")" << endl;
         cerr << "Expected: " << expected << endl;
         cerr << "Actual: " << got << endl;
     }
@@ -54,7 +54,7 @@ void test(TResult expected ,TFunc f, TParam1 parameters) {
 
 void test_search() {
 typedef vector<int> Array;
-    test(8, SearchElement, Array({0, 1, 2, 3, 4, 5, 6, 7, 8}), 8);
+    test(6, SearchElement, Array({0, 1, 2, 3, 4, 5, 6, 7, 8}), 8);
 }
 
 int main() {
