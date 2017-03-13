@@ -15,7 +15,7 @@ ostream& operator<<(ostream& o, const vector<T>& v) {
 }
 
 
-int SearchElement(vector<int>& array, const int key) {
+size_t SearchElement(vector<int>& array, const int key) {
     size_t i = 0;
     array.push_back(key);
     while(array[i] != key) {
@@ -33,9 +33,11 @@ template <class TFunc, class TResult, class TParam1, class TParam2>
 void test(TResult expected ,TFunc f, TParam1 p1, TParam2 p2) {
     auto got = f(p1, p2);
     if (got != expected) {
-        cerr << "failed: f(" << p1 << ", " << p2 << ")" << endl;
-        cerr << "Expected: " << expected << endl;
-        cerr << "Actual: " << got << endl;
+        cerr << "FAILED!!! f(" << p1 << ", " << p2 << ")" << endl;
+        cerr << "Container to search in : " << p1 << endl;
+        cerr << "Value to search: " << p2 << endl;
+        cerr << "Expected value index: " << expected << endl;
+        cerr << "Actual value index: " << got << endl;
     }
 
 }
@@ -54,7 +56,8 @@ void test(TResult expected ,TFunc f, TParam1 p1) {
 
 void test_search() {
 typedef vector<int> Array;
-    test(6, SearchElement, Array({0, 1, 2, 3, 4, 5, 6, 7, 8}), 8);
+const size_t expected_index = 6;
+    test(expected_index, SearchElement, Array({0, 1, 2, 3, 4, 5, 6, 7, 8}), 8);
 }
 
 int main() {
