@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
+#include <algorithm>
+#include <cassert>
 
 using namespace std;
 
@@ -14,6 +16,37 @@ ostream& operator<<(ostream& o, const vector<T>& v) {
     return o << "]";
 }
 
+
+
+int binary_search_helper(const vector<int>& v, const int key, size_t begin , size_t end) {
+
+
+
+
+  assert(std::is_sorted(v.begin(), v.end()));
+  if (begin == end) {
+      return -1;
+  }
+  if (end - begin == 1)  {
+      if (v[begin] == key) {
+          return begin;
+      }
+      else {
+          return -1;
+      }
+  }
+
+  size_t m = (begin + end) / 2;
+  assert((m-begin) + (end-m) == (end-begin));
+  // [0, s) = [0, m) U [m, s)
+  if (key < v[m]) {
+  return binary_search_helper(v, begin, m, key);
+  } else if (v[m] < key) {
+  return binary_search_helper(v, m, end, key);
+  } else {
+      return m;
+  }
+}
 
 int SearchElement(vector<int>& array, const int key) {
     int i = 0;
