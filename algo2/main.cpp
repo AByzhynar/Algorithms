@@ -23,6 +23,23 @@ TParam1 lower_bound_my(TParam1 begin, TParam1 end, const TParam2& key) {
 }
 
 template<typename TParam1, typename TParam2>
+    TParam1 upper_bound_my(TParam1 begin, TParam1 end, const TParam2& key) {
+        assert(begin <= end && std::is_sorted(begin, end));
+        while (begin < end) {
+            TParam1 m = begin + (end - begin)/2;
+            if (*m <= key) {
+               begin = ++m;
+            }
+            else {
+              end = m;
+            }
+        }
+
+
+        return begin;
+    }
+
+template<typename TParam1, typename TParam2>
 TParam1 binary_search_helper(TParam1 begin, TParam1 end, const TParam2 key) {
   assert(std::is_sorted(begin, end));
 
@@ -66,6 +83,8 @@ void test_search() {
       return r != v.end() ? r-v.begin() : -1;
   };
 
+auto ub_search = upper_bound_my<Array::iterator, int>;
+
   // Key does not exist
   const int key = 8;
   Array a;
@@ -84,6 +103,12 @@ void test_search() {
 //  Array e({5, 6, 7, 9, 10});
 //  Array::iterator found2 = std::find(e.begin(), e.end(), key + 1);
 //  test(found2, lb_search, e.begin(), e.end(), key);
+
+Array d({5, 6, 7, 8, 8, 8, 9, 10});
+  Array::iterator found = std::find(d.begin(), d.end(), key);
+  test(found, lb_search, d.begin(), d.end(), key);
+  test(found + 3, ub_search, d.begin(), d.end(), key);
+
 
   test(-1, bin_search, a, key);  // Trivial1  1 element array
   test(-1, bin_search, Array({key - 1, key  + 1}), key); // Trivial2 (2 elements array)
