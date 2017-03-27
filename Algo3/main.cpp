@@ -8,18 +8,17 @@
 using namespace std;
 
 template <typename TParam1>
-TParam1 min_element_my(TParam1 begin, TParam1 end) {
-   auto result = begin;
+int min_element_my(TParam1 begin, TParam1 end) {
+   min_el = 0;
   while (begin < end) {
-      // // [) = [processe)[current][unprocessed)
+      // // [) = [processe)[unprocessed)
       // assert(tmp -s minimum from [processed)
-    if (*begin < *result) {
-      result = begin;
+    if (*begin < min_el) {
+      min_el = *begin;
     }
-      ++begin;
-       // assert(tmp -s minimum from [processed)
+      begin++;
   }
-  return result;
+  return min_el;
 }
 
 
@@ -58,7 +57,7 @@ void test_search() {
 
   // Key does not exist
 
-
+  Array a;
   //  test(a.end(), lb_search, a.begin(), a.end(), key); // Degerate (empty
   //  array)
 
@@ -75,12 +74,10 @@ void test_search() {
   //  Array e({5, 6, 7, 9, 10});
   //  Array::iterator found2 = std::find(e.begin(), e.end(), key + 1);
   //  test(found2, lb_search, e.begin(), e.end(), key);
-  Array a;
-  Array::iterator it = min_element_my(a.begin(), a.end());
-  assert(it == a.end());
+
   Array d({5, 6, 7, -4, 8, 8, 8, 9, 10});
-  Array::iterator it2 = min_element_my(d.begin(), d.end());
-  cout << "Result: " << *it2 << endl;
+  const int result = min_element_my(d.begin(), d.end());
+  cout << "Result: " << result << endl;
 
 
 
