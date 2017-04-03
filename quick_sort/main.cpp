@@ -6,6 +6,17 @@
 using namespace std;
 
 
+//template <class TIter>
+//TIter pivot_strategy(TIter b, TIter e) {
+//  assert(b < e);
+//  auto m = b + (e - b)/2;
+//  auto last = e - 1;
+//  if (*m < *b) swap(b, m);
+//  if (*last < *m) swap(last, m);
+//  if (*m < *b) swap(b, m);
+//  return m;
+//}
+
 template <class TIter>
 void quick_sort(TIter begin, TIter end) {
   if (end - begin > 1) {
